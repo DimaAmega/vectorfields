@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link href="styles/style.css" rel="stylesheet">
+	<title>Researching difur</title>
+</head>
+<body> 	<div id="hovered" ></div>
+		<div id="coords"></div>
+		<button id="hide" data="on"> Hide pannel</button>
+		 <div id="Form">
+			<p class="st">Field</p>
+		 	<input id="dx" placeholder="x' = " type="text" name="введите x'">
+		 	<input id="dy" placeholder="y' = " type="text" name="введите y'">
+			<button id="set">Принять</button>
+			<p class="st">Step integrate</p>
+			<input id="h_integrate" type="number" step="0.001" value="0.1" min="0.00001">
+			<p class="st">Particles number</p>
+			<input id="count" type="number" step="10" value="1000" min="100">
+			<p class="st">Time alive</p>
+			<input id="M_Time_Alive_particle" type="number" step="0.05" value="1.5" min="1">
+			<p class="st">Particle length</p>
+			<input id="M_n_lines" type="number" step="1" value="20" min="10" max="150">
+			<button id="scale_p"> ADD SCALE</button>
+			<button id="scale_s"> SUB SCALE</button>
+
+		</div> 
+		<div id="stage">
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.1/pixi.min.js" ></script>
+		<script src="https://cdn.rawgit.com/gpujs/gpu.js/45103b7f154a12ec639990c6896b21a053eb6a6c/bin/gpu.js" ></script>
+		<script src="scripts/RungeKutt.js"></script>
+		<script src="scripts/World.js"></script>
+	 	<script src="scripts/Parser.js"></script>		 
+	 	<script src="scripts/main.js"></script>
+</body>
+</html>

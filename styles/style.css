@@ -3,16 +3,27 @@ body {
     padding: 0;
     overflow: hidden;
 }
+#set {
+    color: white;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.424);
+    border: none;
+}
+button{
+    border-radius: 10px;
+    overflow: hidden;
+}
 #Form {
     position: absolute;
     right: 0;
     width: 150px;
     height:100vh;
-    background: rgba(38,178,117,0.2);
+    background: rgba(13, 15, 14, 0.2);
     transition: right 0.3s ease-out 0.1s
 }
+
 #coords{
-    color: white;
+color: white;
 position: absolute;
 width: 60px;
 left: -100px;
@@ -56,10 +67,74 @@ color: white;
     height: 100vh;
     background: black;
 }
-#scale_p,#scale_s{
+
+button{
+    display: block;
+    margin: 0 auto;
+    color: rgb(0, 0, 0);
+    background: rgba(255, 255, 255, 0.842);
+    border: none;
     width: 100%;
-    height: 10%;
+    margin-top: 10px;
+}
+
+#scale_p,#scale_s,#share{
+    display: block;
+    margin: 0 auto;
+    color: white;
+    background: rgba(255, 255, 255, 0.424);
+    border: none;
+    width: 100%;
+    margin-top: 10px;
 }
 #scale_p{
     margin-top: 40px;
+}
+input:focus,button:focus{
+    outline: none;
+}
+input {
+    color:white;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(227, 240, 241);
+    width: 100%;
+}
+
+#messageContainer{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 8, 8, 0.456);
+    transition: all 0.3s ease-in-out 0.3s;
+    z-index: 2;
+}
+#message{
+    display: block;
+    text-align: center;
+    /* margin: 0 auto; */
+    color:rgb(0, 0, 0);
+    width: 50vw;
+    background: rgba(255, 255, 255, 0.728);
+    transition: all 0.3s ease-in-out 0.3s;
+    position: absolute;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;     
+    padding: 10px;
+    white-space: normal;
+}
+.mes {
+    word-wrap:break-word;
+    padding: 5px;
+}
+
+
+.middle{
+    top: 50%;
+    left: 50%;
+}
+.tophide{
+    left: 50%;
+    top: -50%;
 }

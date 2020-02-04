@@ -6,8 +6,8 @@ function World() {
   var divStage = document.getElementById("stage");
   var cw = divStage.clientWidth,ch = divStage.clientHeight,scale=60,x_off=0,y_off=0,o_x_off=0,o_y_off=0,start_p; 
   var coord_Lines = new PIXI.Graphics();
-  var arr_particles=[],M_Time_Alive_particle=1.5,h_integrate=0.1,M_n_lines=20;
-  var Pole = (vec)=>{return [ Math.cos(-vec[1]),vec[0] -vec[1]]};
+  var arr_particles=[],M_Time_Alive_particle=1.5,h_integrate=1e-3,M_n_lines=20,xspeed =1,defSpeed=10;
+  var Pole = (vec)=>{return [ 0 , 0 ]};
   var app = new PIXI.Application({ 
     antialias: true,    // default: false s
     resizeTo:document.getElementById("stage")}
@@ -125,56 +125,12 @@ function World() {
   };
   var dropParticle = ()=>{
     arr_particles.pop().self.clear();
-  }
-  this.updateParticles = ()=>{
-    var arr = arr_particles;
-    var n = arr.length;
-    for(var i = 0; i<n;i++){
-  
-      var part = arr[i];
-
-
-      if(part.c_time==part.time_live){
-        if(part.data.length == 1){
-          // UPDATE
-          var lines_count = Math.floor(getRandomArbitary(2, 2*M_n_lines - 2));
-          part.time_live=Math.floor(getRandomArbitary(lines_count,M_Time_Alive_particle*lines_count))
-          part.c_time = 0;
-          part.data = arrayData(getRandomCoords(),lines_count);
-        }
-        else{
-          part.data.length-=1;
-        }
-      }
-      else{
-        var cur_Vec = part.data[0];
-        var new_Vec = RungKut(Pole,cur_Vec,h_integrate);
-        var j = part.data.length-1
-        while(j>0) part.data[j] = part.data[--j];
-        part.data[0] = new_Vec;
-        part.c_time+=1;
-      }
-
-      part.self.clear();
-      part.self.lineStyle(1,0x4f09e7);
-      part.self.moveTo(gxc(part.data[0][0]),gyc( part.data[0][1] ));
-        var N = part.data.length;
-      for(var j = 1; j < N ;j++) part.self.lineTo(gxc(part.data[j][0]),gyc( part.data[j][1] ));
-    };
-  };
-  this.toMouseCoord = (x_c,y_c)=>{
-    var trace = arr_particles[Math.floor(getRandomArbitary(0, arr_particles.length))];
-    var j = trace.data.length;
-    while(j>=0) trace.data[--j] = [Number(x_c),Number(y_c)];
-    trace.c_time = 0;
   };
   //////////////////
   //    PUBLIC
   //////////////////
-
   //тикер
   this.ticker = app.ticker;
-  //ИНИЦИАЛИЗАЦИЯ
   this.initializate = ()=>{
     divStage.appendChild(app.view);
     //СОБЫТИЕ RESIZE
@@ -193,9 +149,6 @@ function World() {
     app.view.addEventListener("mouseup",(e)=>{
       app.view.removeEventListener("mousemove",mousemove);
     });
-
-
-
     app.view.addEventListener("touchstart",(e)=>{
       console.log(e);
       start_p = {x:e.changedTouches[0].clientX,y:e.changedTouches[0].clientY};
@@ -251,8 +204,8 @@ function World() {
   this.change_alive_particle = (value)=>{
     M_Time_Alive_particle = value;
   };
-  this.change_h_intergate = (value)=>{
-    h_integrate = value;
+  this.change_x_speed = (value)=>{
+    xspeed = value;
   };
   this.change_M_n_lines = (value)=>{
     M_n_lines = value;
@@ -275,5 +228,44 @@ function World() {
     y_off +=n*Y;
 
     drawPlan();
+  };
+  this.updateParticles = ()=>{
+    var arr = arr_particles;
+    var n = arr.length;
+    for(var i = 0; i<n;i++){
+      var part = arr[i];
+      if(part.c_time==part.time_live){
+        if(part.data.length == 1){
+          // UPDATE
+          var lines_count = Math.floor(getRandomArbitary(2, 2*M_n_lines - 2));
+          part.time_live=Math.floor(getRandomArbitary(lines_count,M_Time_Alive_particle*lines_count))
+          part.c_time = 0;
+          part.data = arrayData(getRandomCoords(),lines_count);
+        }
+        else{
+          part.data.length-=1;
+        }
+      }
+      else{
+        var new_Vec = part.data[0];
+        var iterations = xspeed*defSpeed+1;
+        while(--iterations>0) new_Vec = RungKut(Pole,new_Vec,h_integrate);
+        var j = part.data.length-1;
+        while(j>0) part.data[j] = part.data[--j];
+        part.data[0] = new_Vec;
+        part.c_time+=1;
+      }
+      part.self.clear();
+      part.self.lineStyle(1,0x4f09e7);
+      part.self.moveTo(gxc(part.data[0][0]),gyc( part.data[0][1] ));
+        var N = part.data.length;
+      for(var j = 1; j < N ;j++) part.self.lineTo(gxc(part.data[j][0]),gyc( part.data[j][1] ));
+    };
+  };
+  this.toMouseCoord = (x_c,y_c)=>{
+    var trace = arr_particles[Math.floor(getRandomArbitary(0, arr_particles.length))];
+    var j = trace.data.length;
+    while(j>=0) trace.data[--j] = [Number(x_c),Number(y_c)];
+    trace.c_time = 0;
   };
 };

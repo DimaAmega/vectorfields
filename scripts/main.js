@@ -32,8 +32,8 @@ function createDialog(message){
 ///////////////////////////
 var world = new World().initializate();
 world.ticker.add(updateWorld);
-var MY_DOMEN = 'file:///home/superhaker/GitHub_Repositories/RK4/index.html';
-// var MY_DOMEN = 'example.com';
+// var MY_DOMEN = 'file:///home/superhaker/GitHub_Repositories/RK4/index.html';
+var MY_DOMEN = 'https://dimaamega.github.io/vectorfields/';
 
 ///////////////////////////
 //        SOME DATA

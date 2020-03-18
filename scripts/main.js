@@ -166,7 +166,7 @@ var params = window
         document.getElementById("dy").value = params.y_str
         if(Parser.parse(params.x_str,params.y_str)) {
           world.SetPole(Parser.Pole);
-          for(var i in Parser.Variables) Parser.Variables[i] =  params[i] || 0;
+          for(var i in Parser.Variables) Parser.Variables[i] =  Number(params[i]) || 0;
           createInputs(params);
   }
 }

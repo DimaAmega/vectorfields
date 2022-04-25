@@ -32,22 +32,23 @@ function createDialog(message){
 ///////////////////////////
 var world = new World().initializate();
 world.ticker.add(updateWorld);
-// var MY_DOMEN = 'file:///home/superhaker/GitHub_Repositories/RK4/index.html';
 var MY_DOMEN = 'https://dimaamega.github.io/vectorfields/';
 
 ///////////////////////////
 //        SOME DATA
 ///////////////////////////
-var START_MESSAGE = `<h1>Визуализация векторных полей онлайн</h1>
+var START_MESSAGE = `<h1>Visualization of vector fields Online</h1>
 <p class="mes">
-  Данная программа позволяет вам визуализировать двумерные векторные поля,
-  а также двумерные системы автономных дифференциальных уравнений.
+  This program allows you to visualize two-dimensional
+  vector fields, as well as two-dimensional
+  systems of autonomous differential equations.
 </p>
 <p class="mes" style="text-align: left;">
-  Использование: <br>
-  Введите своё векторное поле в поля ввода, затем нажмите кнопку "Update field equation".
-  Вы можете использовать параметры, все параметры начинаются с большой буквы, затем вы можете
-  динамически изменять их в соответствующем поле.
+  How to use: <br>
+  Enter your vector field into the input fields, then click the "Update field equation"
+  button. You can use parameters, all parameters start with a capital letter, then you
+  can dynamically change them in the corresponding field.
+  With the Alt/Option key held down, you can see the coordinates in the phase space.
 </p>`;
 
 

@@ -128,7 +128,7 @@ else{
 }
 });
 document.getElementsByTagName("canvas")[0].addEventListener("click",(e)=>{
-  if(e.ctrlKey){
+ if (e.ctrlKey || e.metaKey) {
     var coords = world.getCoordinates(e.clientX,e.clientY)
     world.toMouseCoord(coords.x,coords.y);
   }

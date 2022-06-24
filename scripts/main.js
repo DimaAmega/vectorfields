@@ -32,7 +32,7 @@ function createDialog(message) {
 ///////////////////////////
 const world = new World().initializate();
 world.ticker.add(updateWorld);
-const MY_DOMEN = 'https://dimaamega.github.io/vectorfields/';
+const MY_DOMEN = `${location.origin}${location.pathname}`;
 
 ///////////////////////////
 //        SOME DATA
@@ -84,7 +84,7 @@ document.getElementById("scale_s").addEventListener("click", (e) => {
 });
 document.getElementById("share").addEventListener("click", (e) => {
   const dataKeys = shareData();
-  const url = `${MY_DOMEN}?` + "";
+  let url = `${MY_DOMEN}?` + "";
   for (let nameKey in dataKeys) url += `${nameKey}=${dataKeys[nameKey]}&`;
   const linkDialog = createDialog(`<h3>Ссылка</h3> <p class="mes" >${url}</p>`);
   const button = document.createElement("button");

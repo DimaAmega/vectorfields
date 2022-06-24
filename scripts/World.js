@@ -62,20 +62,13 @@ function World() {
   };
 
   const getColorPole = (vec) => {
-    const rgbToHex = (vec) => {
-      let res = "";
-      for (let i = 0; i < 3; i++) {
-        const hex = vec[i].toString(16);
-        res += hex.length == 1 ? "0" + hex : hex;
-      };
-      return parseInt(res, 16);
-    };
     const length = getLengthOfVec(vec);
-    const slope = 70;
-    let component = Math.floor(slope * length);
+    const LR = 150;
+    let component = Math.floor(LR * length);
     if (component > 255) component = 255;
-    return rgbToHex([component, 0, 255 - component]);
+    return (255 - component << 16) | component;
   };
+
   const mousemove = (e) => {
     const dx = e.clientX - start_p.x;
     const dy = e.clientY - start_p.y;
@@ -258,7 +251,7 @@ function World() {
         part.c_time += 1;
       }
       part.self.clear();
-      part.self.lineStyle(1, 0x4f09e7);
+      part.self.lineStyle(1, getColorPole(Pole(part.data[0])));
       part.self.moveTo(gxc(part.data[0][0]), gyc(part.data[0][1]));
       const N = part.data.length;
       for (let j = 1; j < N; j++) part.self.lineTo(gxc(part.data[j][0]), gyc(part.data[j][1]));

@@ -152,6 +152,10 @@ const params = window
     {}
   );
 
+if (params.add_scale) {
+  const addScale = Number(params.add_scale)
+  world.ADDScale(addScale)
+}
 
 if (!params.skip_welcome) {
   const startMessage = createDialog(START_MESSAGE);

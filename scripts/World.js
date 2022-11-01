@@ -10,7 +10,7 @@ function World() {
   let arr_particles = [], M_Time_Alive_particle = 1.5, h_integrate = 1e-3, M_n_lines = 20, xspeed = 1, defSpeed = 10;
   let Pole = (_) => { return [0, 0] };
   const app = new PIXI.Application({
-    antialias: true,    // default: false s
+    antialias: true,    // default: false
     resizeTo: document.getElementById("stage")
   }
   );

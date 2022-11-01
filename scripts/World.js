@@ -47,10 +47,8 @@ function World() {
         // IE9+, FF17+
         elem.addEventListener("wheel", handler);
       } else if ('onmousewheel' in document) {
-        // устаревший вариант события
         elem.addEventListener("mousewheel", handler);
       } else {
-        // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
         elem.addEventListener("MozMousePixelScroll", handler);
       }
     } else { // IE8-
@@ -103,7 +101,6 @@ function World() {
 
     for (let i = -iterxL; i <= iterxR; i++) //Добавить Вертик линию
       coord_Lines.moveTo(x_off + ((cw) / 2) + i * scale, 0).lineTo(x_off + ((cw) / 2) + i * scale, ch);
-    // obj_coord_line.push(paper.path("M" + (World.x_off+((cw)/2) + i*scale) + ",0" + "L"+ (World.x_off + ((cw)/2) +i*scale) + "," + ch).attr(othline));
     for (let i = -iteryT; i <= iteryB; i++) //Добавить Горизонт линию
       coord_Lines.moveTo(0, y_off + ch / 2 + i * scale).lineTo(cw, y_off + ch / 2 + i * scale);
   };
@@ -124,17 +121,15 @@ function World() {
   //////////////////
   //    PUBLIC
   //////////////////
-  //тикер
+
   this.ticker = app.ticker;
   this.initializate = () => {
     divStage.appendChild(app.view);
-    //СОБЫТИЕ RESIZE
     window.addEventListener("resize", () => {
       cw = divStage.clientWidth;
       ch = divStage.clientHeight;
       drawPlan();
     });
-    //СОБЫТИЕ DRUG & DROP
     app.view.addEventListener("mousedown", (e) => {
       start_p = { x: e.clientX, y: e.clientY };
       o_x_off = x_off;
@@ -155,10 +150,8 @@ function World() {
       console.log(e);
       app.view.removeEventListener("touchmove", fingerMouse);
     });
-    //СОБЫТИЕ КОЛЕСО
     addOnWheel(app.view, (e) => {
       const delta = e.deltaY || e.detail || e.wheelDelta;
-      // отмасштабируем при помощи CSS
 
       const X = (e.clientX - cw / 2 - x_off) / scale;
       const Y = (ch / 2 + y_off - e.clientY) / scale;
@@ -168,7 +161,7 @@ function World() {
           if (delta > 0) scale -= 2;
           else scale += 2;
 
-      /*  РАССУЖДЕНИЯ 
+      /* EXPLANATION 
         const gxc = (x)=> x*scale+cw/2 + x_off;
         const gyc = (y)=> ch/2 - y*scale + y_off;
 

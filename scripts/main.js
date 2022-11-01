@@ -135,15 +135,6 @@ document.getElementsByTagName("canvas")[0].addEventListener("click", (e) => {
 });
 
 
-
-const startMessage = createDialog(START_MESSAGE);
-startMessage.addEventListener("click", (e) => {
-  startMessage.firstChild.setAttribute("class", "tophide");
-  setTimeout(() => {
-    startMessage.remove();
-  }, 600)
-});
-
 ///////////////////////////
 //   SHARE PROPERTIES
 ///////////////////////////
@@ -161,6 +152,14 @@ const params = window
     {}
   );
 
+
+if (!params.skip_welcome) {
+  const startMessage = createDialog(START_MESSAGE);
+  startMessage.addEventListener("click", () => {
+    startMessage.firstChild.setAttribute("class", "tophide");
+    setTimeout(() => startMessage.remove(), 600)
+  });
+}
 
 if (params.x_str && params.y_str) {
   document.getElementById("dx").value = params.x_str

@@ -202,7 +202,3 @@ if (params.M_n_lines) {
 else {
   world.change_M_n_lines(20);
 }
-
-
-
-

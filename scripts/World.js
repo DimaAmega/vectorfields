@@ -10,7 +10,7 @@ function World() {
   let arr_particles = [], M_Time_Alive_particle = 1.5, h_integrate = 1e-3, M_n_lines = 20, xspeed = 1, defSpeed = 10;
   let Pole = (_) => { return [0, 0] };
   const app = new PIXI.Application({
-    antialias: true,    // default: false
+    antialias: true,
     resizeTo: document.getElementById("stage")
   }
   );
@@ -90,18 +90,18 @@ function World() {
     const iteryB = Math.floor((ch / 2 - y_off) / scale);
     coord_Lines.clear();
     coord_Lines.lineStyle(3, 0xffffff, .6);
-    if (((ch / 2 + y_off) > 0) && ((ch / 2 + y_off) < ch)) { //Добавить Горизонт линию
-      coord_Lines.moveTo(0, ch / 2 + y_off).lineTo(cw, (ch / 2) + y_off);  // paper.path("M0," + ((ch)/2 + y_off) + "L"+ cw + "," + ((ch/2)+y_off  )) ;
+    if (((ch / 2 + y_off) > 0) && ((ch / 2 + y_off) < ch)) {
+      coord_Lines.moveTo(0, ch / 2 + y_off).lineTo(cw, (ch / 2) + y_off);
     }
-    if (((cw / 2 + x_off) > 0) && ((cw / 2 + x_off) < cw)) { //Добавить Вертик линию
-      coord_Lines.moveTo(cw / 2 + x_off, 0).lineTo(cw / 2 + x_off, ch);  // paper.path("M0," + ((ch)/2 + y_off) + "L"+ cw + "," + ((ch/2)+y_off  )) ;
+    if (((cw / 2 + x_off) > 0) && ((cw / 2 + x_off) < cw)) {
+      coord_Lines.moveTo(cw / 2 + x_off, 0).lineTo(cw / 2 + x_off, ch);
     }
     coord_Lines.lineStyle(1, 0xffffff, .212);
 
 
-    for (let i = -iterxL; i <= iterxR; i++) //Добавить Вертик линию
+    for (let i = -iterxL; i <= iterxR; i++)
       coord_Lines.moveTo(x_off + ((cw) / 2) + i * scale, 0).lineTo(x_off + ((cw) / 2) + i * scale, ch);
-    for (let i = -iteryT; i <= iteryB; i++) //Добавить Горизонт линию
+    for (let i = -iteryT; i <= iteryB; i++)
       coord_Lines.moveTo(0, y_off + ch / 2 + i * scale).lineTo(cw, y_off + ch / 2 + i * scale);
   };
   const addParticle = () => {
@@ -161,12 +161,6 @@ function World() {
           if (delta > 0) scale -= 2;
           else scale += 2;
 
-      /* EXPLANATION 
-        const gxc = (x)=> x*scale+cw/2 + x_off;
-        const gyc = (y)=> ch/2 - y*scale + y_off;
-
-        X*SCALE + CW/2 + X_OFF = X*SCALE + 2*X + CW/2 + X_OFF2
-      */
       if (delta > 0) {
         x_off += 2 * X;
         y_off -= 2 * Y;

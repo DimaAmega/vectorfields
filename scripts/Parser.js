@@ -20,7 +20,7 @@ function createInputs(params) {
         input.addEventListener("change", (e) => {
 
             const num = Number(e.target.value);
-            if (num == NaN) alert("Неправильное задание значения переменной");
+            if (num == NaN) alert("Incorrect setting of the variable value");
             Parser.Variables[e.target.getAttribute("name")] = Number(e.target.value);
 
         });
@@ -68,6 +68,3 @@ const Parser = {
         }
     },
 };
-
-
-

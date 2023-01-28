@@ -10,9 +10,14 @@ body {
     border: none;
 }
 button{
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
 }
+
+button:hover{
+    cursor: pointer;
+}
+
 #Form {
     position: absolute;
     right: 0;

@@ -2,7 +2,10 @@
 
 ## This program allows you to visualize two-dimensional vector fields, as well as two-dimensional systems of autonomous differential equations
 
-<img width="1100" src="https://699125.selcdn.ru/files/vectorfields-example.gif">
+
+<p align="center">
+  <img width="800px" src="https://699125.selcdn.ru/files/vf-ex.gif">
+</p>
 
 - [Nonlinear oscillator](<https://dimaamega.github.io/vectorfields/?x_str=y&y_str=-L*y-sin(x)&xspeed=3&count=2000&M_Time_Alive_particle=3.95&M_n_lines=24&L=1&skip_welcome&add_scale=100>)
 - [(x, -y) saddle filed](https://dimaamega.github.io/vectorfields/?x_str=x&y_str=-y&xspeed=3&count=2000&M_Time_Alive_particle=3.95&M_n_lines=24&L=1&skip_welcome)

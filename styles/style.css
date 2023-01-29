@@ -44,13 +44,13 @@ input:focus, button:focus {
 #coords{
 color: white;
 position: absolute;
-width: 60px;
+width: 100px;
 left: -100px;
-height: 40px;
+height: 70px;
 text-align: center;
 background: rgba(255, 255, 255, 0.4);
 transform: translate(40,10);
-border-radius: 10%;
+/* border-radius: 10%; */
 }
 #block1 {
     height: 100px;

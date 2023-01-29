@@ -148,10 +148,10 @@ document.getElementById('hovered').addEventListener('mouseover', () => {
 const coords = document.getElementById('coords')
 document.getElementsByTagName('canvas')[0].addEventListener('mousemove', e => {
   if (e.altKey) {
-    coords.style.top = `${e.clientY - 60}px`
-    coords.style.left = `${e.clientX + 10}px`
+    coords.style.top = `${e.clientY - 90}px`
+    coords.style.left = `${e.clientX + 20}px`
     const c = world.getCoordinates(e.clientX, e.clientY)
-    coords.innerHTML = `x: ${c.x}<br>y: ${c.y}`
+    coords.innerHTML = `<pre>x: ${c.x}\ny: ${c.y}</pre>`
   } else {
     coords.style.top = `-100px`
     coords.style.left = `-100px`

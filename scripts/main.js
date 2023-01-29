@@ -61,6 +61,7 @@ const START_MESSAGE = `<h1>Visualization of vector fields online</h1>
   </li>
   <li>With the Alt/Option key held down, you can see the coordinates in the phase space</li>
   <li>With the Ctrl/Command key held down, you can click on specific point on the phase space to set initial conditions you want integrate from</li>
+  <li>A weak vector field is colored red, thereby allowing you to notice, for example, a fixed points</li>
   </ol>
 </p>`
 

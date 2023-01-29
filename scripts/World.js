@@ -186,6 +186,9 @@ function World() {
   this.change_alive_particle = (value) => {
     M_Time_Alive_particle = value;
   };
+  this.change_h_integrate = (value) => {
+    h_integrate = value;
+  };
   this.change_x_speed = (value) => {
     xspeed = value;
   };

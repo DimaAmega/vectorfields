@@ -2,9 +2,6 @@
 ///////////////////////////
 //    ADDITIONAL FUNC
 ///////////////////////////
-function updateWorld() {
-  world.updateParticles();
-};
 function shareData() {
   const baseData = {
     x_str: document.getElementById("dx").value,
@@ -13,44 +10,62 @@ function shareData() {
     count: document.getElementById("count").value,
     M_Time_Alive_particle: document.getElementById("M_Time_Alive_particle").value,
     M_n_lines: document.getElementById("M_n_lines").value,
+    // h_integrate: document.getElementById("h_integrate").value
   };
   return { ...baseData, ...Parser.Variables }
 };
+
 function createDialog(message) {
   const div = document.createElement("div");
   div.setAttribute("id", "messageContainer");
   const div2 = document.createElement("div");
-  div2.setAttribute("id", "message");
+  div2.setAttribute("id", "welcome_message");
   div2.setAttribute("class", "middle");
   div2.innerHTML = message;
   div.append(div2);
   document.body.prepend(div);
   return div;
 };
-///////////////////////////
-//     INITIALIZATING
-///////////////////////////
-const world = new World().initializate();
-world.ticker.add(updateWorld);
-const MY_DOMEN = `${location.origin}${location.pathname}`;
+
+function createHelpDialog() {
+  const startMessage = createDialog(START_MESSAGE);
+  startMessage.addEventListener("click", () => {
+    startMessage.firstChild.setAttribute("class", "tophide");
+    setTimeout(() => startMessage.remove(), 600)
+  });
+}
 
 ///////////////////////////
 //        SOME DATA
 ///////////////////////////
-const START_MESSAGE = `<h1>Visualization of vector fields Online</h1>
-<p class="mes">
+const SOURCE_CODE_LINK = 'https://github.com/DimaAmega/vectorfields'
+
+const START_MESSAGE = `<h1>Visualization of vector fields online</h1>
+<p class="message">
   This program allows you to visualize two-dimensional
   vector fields, as well as two-dimensional
   systems of autonomous differential equations.
+  Here is the <a href=${SOURCE_CODE_LINK}>Source code</a>
 </p>
-<p class="mes" style="text-align: left;">
+<p class="message">
   How to use: <br>
-  Enter your vector field into the input fields, then click the "Update field equation"
-  button. You can use parameters, all parameters start with a capital letter, then you
-  can dynamically change them in the corresponding field.
-  With the Alt/Option key held down, you can see the coordinates in the phase space.
+  <ol>
+  <li>Enter your vector field into the input fields, then click the "Update field equation" button</li>
+  <li>You can use variables, all variables start with a capital letter, then you
+    can dynamically change them in the corresponding field. On example:
+    <pre>x' = A*y,<br>y' = -2*A*x</pre> <pre style="display: inline">'A'</pre> is the variable here. The variable name can contain one or more letters
+  </li>
+  <li>With the Alt/Option key held down, you can see the coordinates in the phase space</li>
+  <li>With the Ctrl/Command key held down, you can click on specific point on the phase space to set initial conditions you want integrate from</li>
+  </ol>
 </p>`;
 
+///////////////////////////
+//     INITIALIZATING
+///////////////////////////
+const world = new World().initializate();
+world.ticker.add(() =>  world.updateParticles());
+const MY_DOMEN = `${location.origin}${location.pathname}`;
 
 ///////////////////////////
 //  ADD EVENTS LISTENERS
@@ -61,6 +76,9 @@ document.getElementById("count").addEventListener("change", (e) => {
 });
 document.getElementById("M_Time_Alive_particle").addEventListener("change", (e) => {
   world.change_alive_particle(Number(e.target.value));
+});
+document.getElementById("h_integrate").addEventListener("change", (e) => {
+  world.change_h_integrate(Number(e.target.value));
 });
 document.getElementById("xspeed").addEventListener("change", (e) => {
   world.change_x_speed(Number(e.target.value));
@@ -82,11 +100,16 @@ document.getElementById("scale_p").addEventListener("click", (e) => {
 document.getElementById("scale_s").addEventListener("click", (e) => {
   world.ADDScale(-10);
 });
+
+document.getElementById("help").addEventListener("click", (e) => {
+  createHelpDialog()
+})
+
 document.getElementById("share").addEventListener("click", (e) => {
   const dataKeys = shareData();
   let url = `${MY_DOMEN}?` + "";
   for (let nameKey in dataKeys) url += `${nameKey}=${dataKeys[nameKey]}&`;
-  const linkDialog = createDialog(`<h3>Ссылка</h3> <p class="mes" >${url}</p>`);
+  const linkDialog = createDialog(`<h3>Ссылка</h3> <p class="message" >${url}</p>`);
   const button = document.createElement("button");
   button.innerHTML = "CLOSE";
   button.addEventListener("click", (e) => {
@@ -158,11 +181,7 @@ if (params.add_scale) {
 }
 
 if (!params.skip_welcome) {
-  const startMessage = createDialog(START_MESSAGE);
-  startMessage.addEventListener("click", () => {
-    startMessage.firstChild.setAttribute("class", "tophide");
-    setTimeout(() => startMessage.remove(), 600)
-  });
+  createHelpDialog()
 }
 
 if (params.x_str && params.y_str) {
@@ -193,6 +212,14 @@ if (params.M_Time_Alive_particle) {
 }
 else {
   world.change_alive_particle(1.5);
+}
+
+if (params.h_integrate) {
+  document.getElementById("h_integrate").value = params.h_integrate;
+  world.change_h_integrate(Number(params.h_integrate));
+}
+else {
+  world.change_h_integrate(1e-3);
 }
 
 if (params.M_n_lines) {

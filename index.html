@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <link href="styles/style.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">
 	<title>Vectorfields</title>
 </head>
-<body>
+<body>	
 		<div id="hovered" ></div>
 		<div id="coords"></div>
 		<button id="hide" data="on"> Hide pannel</button>
@@ -22,9 +25,12 @@
 			 <input id="M_Time_Alive_particle" type="number" step="0.05" value="1.5" min="1">
 			 <p class="st">Track length</p>
 			 <input id="M_n_lines" type="number" step="1" value="20" min="10" max="150">
+			 <p class="st">integrate step</p>
+			 <input id="h_integrate" type="number" step="0.00005" value="1e-3">
 			 <button id="scale_p">Add scale</button>
 			 <button id="scale_s">Sub scale</button>
 			 <button id="share">Share</button>
+			 <button id="help">Help</button>
 
 		</div> 
 		<div id="stage">

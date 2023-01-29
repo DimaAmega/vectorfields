@@ -1,13 +1,19 @@
 body {
+    font-family: 'Vollkorn', cursive;
+    font-size: 18px;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
+a {
+    color: blue;
+    text-decoration: none; /* no underline */
+  }
 #set {
     color: white;
     margin-top: 20px;
     background: rgba(255, 255, 255, 0.424);
-    border: none;
+    /* border: none; */
 }
 button{
     border-radius: 5px;
@@ -16,6 +22,14 @@ button{
 
 button:hover{
     cursor: pointer;
+}
+
+input {
+    border-radius: 2px;
+}
+
+input:focus, button:focus {
+    border-bottom: 3px solid rgba(57, 57, 174, 0.967);
 }
 
 #Form {
@@ -73,7 +87,7 @@ color: white;
     background: black;
 }
 
-button{
+button {
     display: block;
     margin: 0 auto;
     color: rgb(0, 0, 0);
@@ -88,7 +102,7 @@ button{
     margin: 0 auto;
     color: white;
     background: rgba(255, 255, 255, 0.424);
-    border: none;
+    /* border: none; */
     width: 100%;
     margin-top: 10px;
 }
@@ -114,12 +128,12 @@ input {
     transition: all 0.3s ease-in-out 0.3s;
     z-index: 2;
 }
-#message{
+#welcome_message{
     display: block;
     text-align: center;
     /* margin: 0 auto; */
     color:rgb(0, 0, 0);
-    width: 50vw;
+    width: 60vw;
     background: rgba(255, 255, 255, 0.728);
     transition: all 0.3s ease-in-out 0.3s;
     position: absolute;
@@ -129,11 +143,14 @@ input {
     padding: 10px;
     white-space: normal;
 }
-.mes {
+.message {
     word-wrap:break-word;
     padding: 5px;
 }
 
+ol li {
+    text-align: left;
+}
 
 .middle{
     top: 50%;

@@ -30,7 +30,10 @@ function createDialog(message) {
 
 function createHelpDialog() {
   const startMessage = createDialog(START_MESSAGE)
-  startMessage.addEventListener('click', () => {
+  startMessage.addEventListener('click', e => {
+    if (e.target.nodeName == 'A') {
+      return
+    }
     startMessage.firstChild.setAttribute('class', 'tophide')
     setTimeout(() => startMessage.remove(), 600)
   })
@@ -39,21 +42,21 @@ function createHelpDialog() {
 ///////////////////////////
 //        SOME DATA
 ///////////////////////////
+const MY_DOMEN = `${location.origin}${location.pathname}`
 const SOURCE_CODE_LINK = 'https://github.com/DimaAmega/vectorfields'
-
 const START_MESSAGE = `<h1>Visualization of vector fields online</h1>
 <p class="message">
   This program allows you to visualize two-dimensional
   vector fields, as well as two-dimensional
   systems of autonomous differential equations.
-  Here is the <a href=${SOURCE_CODE_LINK}>Source code</a>
+  Here is the <a target="_blank" href=${SOURCE_CODE_LINK}>Source code</a>
 </p>
 <p class="message">
   How to use: <br>
   <ol>
   <li>Enter your vector field into the input fields, then click the "Update field equation" button</li>
   <li>You can use variables, all variables start with a capital letter, then you
-    can dynamically change them in the corresponding field. On example:
+    can dynamically change them in the corresponding field. On <a target="_blank" href="${MY_DOMEN}?x_str=A*y&y_str=-2*A*x&A=0.3&count=3000&xspeed=5&skip_welcome">example</a>:
     <pre>x' = A*y,<br>y' = -2*A*x</pre> <pre style="display: inline">'A'</pre> is the variable here. The variable name can contain one or more letters
   </li>
   <li>With the Alt/Option key held down, you can see the coordinates in the phase space</li>
@@ -66,7 +69,6 @@ const START_MESSAGE = `<h1>Visualization of vector fields online</h1>
 ///////////////////////////
 const world = new World().initializate()
 world.ticker.add(() => world.updateParticles())
-const MY_DOMEN = `${location.origin}${location.pathname}`
 
 ///////////////////////////
 //  ADD EVENTS LISTENERS

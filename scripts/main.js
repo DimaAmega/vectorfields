@@ -228,3 +228,7 @@ if (params.M_n_lines) {
 } else {
   world.change_M_n_lines(20)
 }
+
+if (params.hide_params_menu) {
+  document.getElementById('hide').click()
+}

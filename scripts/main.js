@@ -1,10 +1,11 @@
 ///////////////////////////
 //    ADDITIONAL FUNC
 ///////////////////////////
+const removeSpaces = str => str.replace(/ /g, '')
 function shareData() {
   const baseData = {
-    x_str: document.getElementById('dx').value,
-    y_str: document.getElementById('dy').value,
+    x_str: removeSpaces(document.getElementById('dx').value),
+    y_str: removeSpaces(document.getElementById('dy').value),
     xspeed: document.getElementById('xspeed').value,
     count: document.getElementById('count').value,
     M_Time_Alive_particle: document.getElementById('M_Time_Alive_particle')
@@ -113,7 +114,7 @@ document.getElementById('share').addEventListener('click', e => {
   let url = `${MY_DOMEN}?` + ''
   for (let nameKey in dataKeys) url += `${nameKey}=${dataKeys[nameKey]}&`
   const linkDialog = createDialog(
-    `<h3>Ссылка</h3> <p class="message" >${url}</p>`,
+    `<h3>Link</h3> <p class="message" >${encodeURI(url)}</p>`,
   )
   const button = document.createElement('button')
   button.innerHTML = 'CLOSE'

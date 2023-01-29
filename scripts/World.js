@@ -265,7 +265,10 @@ function World() {
         let iterations = xspeed * defSpeed + 1
         while (--iterations > 0) new_Vec = RungKut(Pole, new_Vec, h_integrate)
         let j = part.data.length - 1
-        while (j > 0) part.data[j] = part.data[--j]
+        while (j > 0) {
+          part.data[j] = part.data[j - 1]
+          j--
+        }
         part.data[0] = new_Vec
         part.c_time += 1
       }

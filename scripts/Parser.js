@@ -55,7 +55,7 @@ const Parser = {
       return false
     }
     try {
-      this.Pole([])
+      this.Pole([0, 0])
       return true
     } catch {
       this.Pole = undefined

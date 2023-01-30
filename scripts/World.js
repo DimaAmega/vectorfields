@@ -246,10 +246,7 @@ function World() {
         let iterations = xspeed * defSpeed + 1
         while (--iterations > 0) newVec = RungKut(Pole, newVec, h_integrate)
         let j = part.data.length - 1
-        while (j > 0) {
-          part.data[j] = part.data[j - 1]
-          j--
-        }
+        while (j > 0) part.data[j] = part.data[--j]
         part.data[0] = newVec
         part.cTime += 1
       }
@@ -257,8 +254,9 @@ function World() {
       part.self.lineStyle(1, getColorPole(Pole(part.data[0])))
       part.self.moveTo(gxc(part.data[0][0]), gyc(part.data[0][1]))
       const N = part.data.length
-      for (let j = 1; j < N; j++)
+      for (let j = 1; j < N; j++) {
         part.self.lineTo(gxc(part.data[j][0]), gyc(part.data[j][1]))
+      }
     }
   }
   this.toMouseCoord = (x_c, y_c) => {

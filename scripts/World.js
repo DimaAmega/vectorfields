@@ -19,9 +19,8 @@ function World() {
     MnLines = 20,
     xspeed = 1,
     defSpeed = 10
-  let Pole = _ => {
-    return [0, 0]
-  }
+  let Pole = _ => [0, 0]
+
   const app = new PIXI.Application({
     antialias: true,
     resizeTo: document.getElementById('stage'),

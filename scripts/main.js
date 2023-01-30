@@ -91,7 +91,7 @@ document.getElementById('xspeed').addEventListener('change', e => {
   world.change_x_speed(Number(e.target.value))
 })
 document.getElementById('M_n_lines').addEventListener('change', e => {
-  world.change_M_n_lines(Number(e.target.value))
+  world.change_MnLines(Number(e.target.value))
 })
 document.getElementById('set').addEventListener('click', e => {
   const x_str = document.getElementById('dx').value
@@ -107,11 +107,9 @@ document.getElementById('scale_p').addEventListener('click', e => {
 document.getElementById('scale_s').addEventListener('click', e => {
   world.ADDScale(-10)
 })
-
 document.getElementById('help').addEventListener('click', e => {
   createHelpDialog()
 })
-
 document.getElementById('share').addEventListener('click', e => {
   const dataKeys = shareData()
   let url = `${MY_DOMEN}?` + ''
@@ -200,6 +198,7 @@ if (params.xspeed) {
   document.getElementById('xspeed').value = params.xspeed
   world.change_x_speed(Number(params.xspeed))
 }
+
 if (params.count) {
   document.getElementById('count').value = params.count
   world.ADDParticle(Number(params.count))
@@ -224,9 +223,9 @@ if (params.h_integrate) {
 
 if (params.M_n_lines) {
   document.getElementById('M_n_lines').value = params.M_n_lines
-  world.change_M_n_lines(Number(params.M_n_lines))
+  world.change_MnLines(Number(params.M_n_lines))
 } else {
-  world.change_M_n_lines(20)
+  world.change_MnLines(20)
 }
 
 if (params.hide_params_menu) {

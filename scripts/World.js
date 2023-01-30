@@ -1,4 +1,3 @@
-PIXI.utils.skipHello()
 function World() {
   //////////////////
   //    PRIVATE

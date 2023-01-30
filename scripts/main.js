@@ -122,9 +122,7 @@ document.getElementById('share').addEventListener('click', e => {
   button.innerHTML = 'CLOSE'
   button.addEventListener('click', e => {
     linkDialog.firstChild.setAttribute('class', 'tophide')
-    setTimeout(() => {
-      linkDialog.remove()
-    }, 600)
+    setTimeout(() => linkDialog.remove(), 600)
   })
   linkDialog.firstChild.append(button)
 })

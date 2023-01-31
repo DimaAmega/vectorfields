@@ -255,6 +255,7 @@ function World() {
       part.self.moveTo(gxc(part.data[0][0]), gyc(part.data[0][1]))
       const N = part.data.length
       for (let j = 1; j < N; j++) {
+        j % 12 == 0 && part.self.lineStyle(1, getColorPole(Pole(part.data[j])))
         part.self.lineTo(gxc(part.data[j][0]), gyc(part.data[j][1]))
       }
     }

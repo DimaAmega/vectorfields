@@ -38,6 +38,8 @@ input {
 	border-bottom: 1px solid rgb(227, 240, 241);
 	width: 100%;
 	border-radius: 2px;
+	padding: 5px;
+	font-family: monospace;
 }
 
 input:focus,
@@ -55,7 +57,7 @@ button:focus {
 #Form {
 	position: absolute;
 	right: 0;
-	width: 150px;
+	width: 175px;
 	height: 100vh;
 	background: rgba(13, 15, 14, 0.2);
 	transition: right 0.3s ease-out 0.1s
